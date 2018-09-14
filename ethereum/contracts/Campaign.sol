@@ -35,7 +35,7 @@ contract Campaign {
         _;
     }
 
-    function Campaign(uint minimum, address creator) public {
+    constructor(uint minimum, address creator) public {
         manager = creator;
         minimumContribution = minimum;
     }
@@ -45,6 +45,19 @@ contract Campaign {
 
         approvers[msg.sender] = true;
         approversCount++;
+    }
+
+
+    function createRequest(string description, uint value, address recipient) public restricted {
+        Request memory newRequest = Request({
+           description: description,
+           value: value,
+           recipient: recipient,
+           complete: false,
+           approvalCount: 0
+        });
+
+        requests.push(newRequest);
     }
 
 }
