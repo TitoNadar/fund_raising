@@ -34,4 +34,17 @@ contract Campaign {
         require(msg.sender == manager);
         _;
     }
+
+    function Campaign(uint minimum, address creator) public {
+        manager = creator;
+        minimumContribution = minimum;
+    }
+
+    function contribute() public payable {
+        require(msg.value > minimumContribution);
+
+        approvers[msg.sender] = true;
+        approversCount++;
+    }
+
 }
