@@ -28,4 +28,10 @@ contract Campaign {
     uint public minimumContribution;
     mapping(address => bool) public approvers;
     uint public approversCount;
+
+
+    modifier restricted() {
+        require(msg.sender == manager);
+        _;
+    }
 }
