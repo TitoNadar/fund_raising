@@ -18,4 +18,4 @@ beforeEach(async () => {
       .deploy({ data: compiledFactory.bytecode })
       .send({ from: accounts[0], gas: '1000000' });
 
-}  
+});  
